@@ -5,6 +5,8 @@ import com.optimagrowth.licence.service.LicenseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Locale;
+
 @RestController
 @RequestMapping("/v1/organization/{organizationId}/licence")
 public class LicenseController {
@@ -24,20 +26,23 @@ public class LicenseController {
 
     @PostMapping
     public ResponseEntity<String> createLicense(@PathVariable("organizationId") String organizationId,
-                                                @RequestBody License request) {
-        return ResponseEntity.ok(licenseService.createLicense(request, organizationId));
+                                                @RequestBody License request,
+                                                Locale locale) {
+        return ResponseEntity.ok(licenseService.createLicense(request, organizationId, locale));
     }
 
     @PutMapping
     public ResponseEntity<String> updateLicense(@PathVariable("organizationId") String organizationId,
-                                                @RequestBody License request) {
-        return ResponseEntity.ok(licenseService.updateLicense(request, organizationId));
+                                                @RequestBody License request,
+                                                Locale locale) {
+        return ResponseEntity.ok(licenseService.updateLicense(request, organizationId, locale));
     }
 
     @DeleteMapping(value="/{licenseId}")
     public ResponseEntity<String> deleteLicense(@PathVariable("organizationId") String organizationId,
-                                                @PathVariable("licenseId") String licenseId) {
-        return ResponseEntity.ok(licenseService.deleteLicense(licenseId, organizationId));
+                                                @PathVariable("licenseId") String licenseId,
+                                                Locale locale) {
+        return ResponseEntity.ok(licenseService.deleteLicense(licenseId, organizationId, locale));
     }
 
 }
