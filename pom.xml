@@ -53,6 +53,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<imageName>seoleir/${project.artifactId}:${project.version}</imageName>
 					<layers>
 						<enabled>true</enabled>
 					</layers>

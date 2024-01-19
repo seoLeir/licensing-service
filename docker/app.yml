@@ -1,15 +1,25 @@
 version: '3.7'
 services:
   licensingservice:
-    image: licensing-service:0.0.1-SNAPSHOT
+    depends_on:
+      - postgres
+    image: seoleir/licensing-service:0.0.1-SNAPSHOT
     ports:
     - "8080:8080"
     environment:
     - "SPRING_PROFILES_ACTIVE=dev"
     networks:
-      backend:
-        aliases:
-        - "licenseservice"
+      - backend
+  postgres:
+    image: postgres:15.2
+    ports:
+      - "15432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
+    networks:
+      - backend
 networks:
   backend:
+    name: "licensing-service"
     driver: bridge
