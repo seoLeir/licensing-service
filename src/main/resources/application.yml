@@ -1,3 +1,6 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
 management:
   endpoints:
     web:
@@ -12,3 +15,4 @@ management:
       enabled: false
     diskspace:
       enabled: true
+

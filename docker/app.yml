@@ -1,13 +1,18 @@
 version: '3.7'
 services:
-  licensingservice:
-    depends_on:
-      - postgres
+  licensing-service:
     image: seoleir/licensing-service:0.0.1-SNAPSHOT
     ports:
     - "8080:8080"
     environment:
-    - "SPRING_PROFILES_ACTIVE=dev"
+    - SPRING_PROFILES_ACTIVE=dev
+    networks:
+      - backend
+    restart: on-failure
+  config-server:
+    image: seoleir/configserver:0.0.1-SNAPSHOT
+    ports:
+      - "8071:8071"
     networks:
       - backend
   postgres:
